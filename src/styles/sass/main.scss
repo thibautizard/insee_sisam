@@ -1,0 +1,50 @@
+/*
+===================
+|                 |
+|    PARTIALS     |
+|                 |
+===================
+*/
+
+/* UTILS */
+
+@import "./utils/variables";
+@import "./utils/extensions";
+@import "./utils/mixins";
+@import "./utils/fonts";
+@import "./utils/functions";
+@import "./utils/animations";
+
+/* BASE */
+
+@import "./base/base";
+
+/* COMPONENTS */
+
+@import "./components/suggestions";
+@import "./components/error";
+@import "./components/detail";
+@import "./components/bloc";
+@import "./components/loader";
+@import "./components/label";
+@import "./components/icon";
+@import "./components/alert";
+
+/* LAYOUTS */
+
+@import "./layouts/table";
+@import "./layouts/search";
+@import "./layouts/navbar";
+@import "./layouts/whiteBox";
+@import "./layouts/footbar";
+
+/* PAGES */
+
+@import "./pages/accueil";
+@import "./pages/agents";
+@import "./pages/bureaux";
+@import "./pages/directions";
+
+
+
+

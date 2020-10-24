@@ -1,0 +1,86 @@
+/*
+
+##############
+#   SEARCH   #
+##############
+
+*/
+
+
+.search-container {
+
+    display: flex;
+    flex-direction: column;    
+    justify-content: center;
+    align-items: center;
+    height: $searchHeight;
+    margin-top: 2vw;
+    margin-bottom: 1.5vw;
+    padding:2vw 0;
+
+    .searchbar {
+       position: relative;
+       width: 3vw;
+       transition: 0.6s ease-in-out;
+
+       &:focus-within {
+        width: 20vw;
+
+          .searchbar__input {
+            background-color: #FFF;
+            padding-left: 1.5vw;
+            box-shadow: inset 0px 0px .3vw rgba(0, 0, 0, 0.4);
+          }
+
+          .searchbar__icon path {
+            fill: $black;
+          }
+        
+      }
+
+       .searchbar__input {
+         width: 100%;
+         border: none;
+         outline: none;
+         border-radius: 3vw;
+         background-color: $black;
+         padding: .85vw;
+         color: $black;
+         font-size: 1vw;
+         font-family: "Montserrat";
+         cursor: pointer;
+         transition: 0.6s ease-out;
+         
+         &::placeholder {
+           color: $black;
+         }
+
+       }
+
+       .searchbar__icon {
+         position: absolute;
+         right: calc(3vw / 2);
+         top: 50%;
+         transform: translate(50%, -50%);
+         width: 1vw;
+         height: 1vw;
+         pointer-events: none;
+  
+         path {
+           fill: white;
+           transition: 0.6s linear;
+         }
+       }
+     }     
+  }
+  
+
+  
+  
+ 
+    
+    
+    
+    
+    
+   

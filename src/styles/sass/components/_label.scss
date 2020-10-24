@@ -1,0 +1,43 @@
+ /*  
+  ##############
+  #  Labels    #
+  ##############
+*/
+
+.labels {
+    
+    position:absolute;
+    left:0;
+    height: $searchHeight;
+
+    .label {
+
+      width: 12.4vw;
+      height: 2.5vw;
+      margin-bottom: .65vw;
+      background-color: #24252A;
+      position:relative;
+      left:-9.8vw;
+      border-radius: 0 1.1vw 1.1vw 0;
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor:pointer;    
+      transition: left .6s ease-out;
+  
+      &__text {
+        color:white;
+        margin-left: 1.2vw;
+        font-family: "Montserrat";
+      }
+  
+      img {
+        width: 1.5vw;
+        margin: 0 .7vw;
+      }
+  
+      &:hover{
+        left:0;
+        }
+    }
+  }

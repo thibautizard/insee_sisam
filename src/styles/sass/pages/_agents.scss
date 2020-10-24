@@ -1,0 +1,91 @@
+/* ==========================
+         VISUALISATION
+   ========================== */
+
+  
+
+   #scrollY {
+    position:relative;
+    top: $navHeight;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    height:$tabHeight;
+    width:100vw;
+    overflow: hidden;
+  }
+  
+  #scrollX {
+    overflow-x: scroll;
+    padding-bottom: 3vw;
+    height: $tabHeight;
+  }
+  
+
+  
+  
+  
+  
+  /* ==========================
+           GREYSCREEN
+     ========================== */
+  
+  #greyscreen {
+    opacity:0.5;
+    background-color: lightgray;
+    position:absolute;
+    z-index:997;
+  }
+  
+    /* ==========================
+                HEADER
+     ========================== */
+  
+     .header-order {
+      background : white;
+      z-index: 9999;
+      position:absolute;
+      top:0;
+      left:0;
+      border: 1px solid black;
+      border-radius: 20px;
+      box-shadow: 0 0 5px .5px rgb(150, 150, 150);
+      
+      display: none;
+      padding: 20px 0;
+    }
+
+    .header-order ul {
+      list-style-type: none;
+      text-align: left;
+      font-family: "Quicksand";
+      font-size: 18px;   
+      max-height: 400px;
+      overflow: scroll;   
+    } 
+
+    .header-order ul li {
+      padding:3px 25px;
+      width:100%;
+    }
+
+    .header-order ul li:hover {
+      background: rgb(240, 240, 240);
+      cursor: pointer;
+    }
+  
+  /* ==========================
+           BOTTOM - FADE OUT
+     ========================== */
+  
+  
+  
+     #bottom_fade {
+      width: 100vw;
+      height: 150px;
+      z-index: 999;
+      position: fixed;
+      bottom: 0px;
+      background: url("/bottom-fade.png") bottom center;
+    }  
+  

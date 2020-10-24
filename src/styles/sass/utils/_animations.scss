@@ -1,0 +1,131 @@
+  /* =================
+         Animations
+     ================= */
+  
+     @keyframes fadeInUp {
+        from {opacity:0; transform: translateY(70px)}
+        to {opacity:1;}
+        }
+      
+      @keyframes fadeInDown {
+        from {opacity:0; transform: translateY(-20px)}
+        to {opacity:1;}
+        }
+      
+      @keyframes fadeOutUp {
+        from {opacity:1;}
+        to {opacity:0; transform: translateY(-70px); visibility: hidden;}
+      }
+      
+      @keyframes fadeOutDown {
+        from {opacity:1;}
+        to {opacity:0; transform: translateY(70px); visibility: hidden;}
+      }
+      
+      @keyframes fadeInAndOut {
+        0% {opacity:1}
+        15% {opacity:0; transform: translateY(70px);}
+        85% {opacity:0; transform: translateY(70px);}
+        100% {opacity:1}
+      
+      }
+      
+      @keyframes fadeLeftIn {
+        from {opacity:0; transform: translateX(70px)}
+        to {opacity:1;}
+        }
+      
+        @keyframes fadeLeftInQuick {
+          from {opacity:0; transform: translateX(30px)}
+          to {opacity:1;}
+          }
+      
+      @keyframes fadeLeftOut {
+        from {opacity:1;}
+        to  {opacity:0; transform: translateX(3vw); visibility: hidden;}
+        }
+
+      @keyframes fadeRightOut {
+        from {opacity:1;}
+        to  {opacity:0; transform: translateX(-3vw); visibility: hidden;}
+        }
+      
+      @keyframes shake {
+          0% { margin-left: 0rem; }
+          25% { margin-left: 0.5rem; }
+          75% { margin-left: -0.5rem; }
+          100% { margin-left: 0rem; }
+        }
+
+        @keyframes popUp{
+          0%{transform:scale(0.7); opacity:0;}
+          50%{opacity:1;}
+          70%{transform:scale(1.2); opacity:1;}
+          100%{transform:scale(1); visibility:visible;}
+        }
+      
+      .fade-in-up {
+        animation: fadeInUp ease-out 0.75s;
+        animation-fill-mode: forwards;
+        }
+      
+      .fade-in-down {
+        animation: fadeInDown ease-out 0.75s;
+        animation-fill-mode: forwards;
+        }
+      
+      .fade-out-down {
+          animation: fadeOutDown ease-in 0.75s;
+          animation-fill-mode: forwards;
+        }
+      
+      .fade-out-up {
+        animation: fadeOutUp ease-in 0.75s;
+        animation-fill-mode: forwards;
+      }
+      
+      .fade-in-and-out {
+        animation: fadeInAndOut ease-in-out 2s;
+        animation-fill-mode: forwards;
+      }
+      
+      .fade-left-in {
+        animation: fadeLeftIn ease-out 0.75s;
+        animation-fill-mode: forwards;
+      }
+      
+      .fade-left-in-quick {
+        animation: fadeLeftInQuick ease-out .4s;
+        animation-fill-mode: forwards;
+      }
+      
+      .fade-left-out {
+        animation: fadeLeftOut ease-out 0.75s;
+        animation-fill-mode: forwards;
+      }
+
+      .fade-right-out {
+        animation: fadeRightOut ease-out 0.75s;
+        animation-fill-mode: forwards;
+      }
+
+      .shaking-error {
+        animation: shake 0.2s ease-in-out 0s 2;
+        box-shadow: none;
+        border-color: transparent;
+        outline: 2px solid rgba(196, 36, 36, .6);
+      }
+
+      .pop-up {
+        animation: popUp ease-in-out 0.4s;
+        animation-fill-mode: forwards;
+      }
+
+      .pop-up-reverse {
+        animation: popUp ease-in-out 0.4s;
+        animation-fill-mode: forwards;
+        animation-direction: reverse;
+      }
+
+
+      

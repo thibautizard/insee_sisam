@@ -1,0 +1,99 @@
+#cartouche {
+    width: 85%;
+    height:83vh;
+    margin-top: 200px;
+    margin-bottom: 130px;
+    display:flex;
+    justify-content: space-between;
+    padding:0;
+}
+
+
+
+/*
+*******************
+*                 * 
+*     RÉSUMÉ      *
+*                 *
+*******************
+*/
+
+#liste_informations {
+    width: 30%;
+}
+
+#liste_informations h3 {
+    margin-top: 10px;
+    margin-bottom:50px;
+    text-align: center;
+    font-size: 6rem;
+    font-family: "Quicksand", Arial, Helvetica, sans-serif;
+}
+
+/*
+************************
+*                      * 
+*  LISTE INFORMATIONS  *
+*                      *
+************************
+*/
+
+#informations {
+    display:flex;
+    justify-content: center;
+}
+
+#menus {
+    font-weight: bold;
+    margin-right: 100px;
+}
+
+#données {
+    text-align: center;
+}
+
+.colonne {
+    text-align: left;
+    font-size: 40px;
+    font-family:  "Quicksand", Arial, Helvetica, sans-serif;
+}
+/*
+*******************
+*                 * 
+*  LISTE BUREAUX  *
+*                 *
+*******************
+*/
+
+
+
+#table_bureaux {
+    width:100%;
+    margin-top: 130px;
+}
+
+#table_bureaux thead tr {
+    color:black;
+    background-color: lightgray;
+    border: 2px solid black;
+}
+
+#liste_bureaux_libres {
+    width:70%;
+    padding: 0 30px;
+    overflow: scroll;
+}
+
+#liste_bureaux_libres #header {
+    background-color: grey;
+    color:black;
+}
+
+#liste_bureaux_libres h3 {
+    background-color: grey;
+    color:black;
+}
+
+
+
+

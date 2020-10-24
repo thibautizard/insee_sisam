@@ -1,0 +1,62 @@
+                                                    /*
+##############
+#   NAVBAR   #
+##############                                      */
+
+nav {
+    background-color: $black;
+    width: 100vw;
+    height: $navHeight;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 0 3vw;
+    z-index: 10;
+    position: fixed;
+    top:0;
+    color:$white;
+
+    .link-home {
+        font-size: 2vw;
+        cursor:pointer;
+        font-family: "Montserrat";
+    }
+
+    .nav_links {
+      display: flex;
+      height: $navHeight;
+    }
+
+    .nav_link { 
+        margin: 0 1.4vw;
+        text-align: center;
+        font-weight: 500;
+        font-size: 1.2vw; 
+        display: flex;
+        align-self: stretch;  
+        padding-top: 1vw;
+        box-sizing: border-box;
+        
+        &:hover, &.nav_link--active {
+          color: #1eacd0;
+          border-bottom: .2vw solid #1eacd0;
+        }
+    }
+
+    button {
+      font-size: 1vw; 
+      padding: .6vw 1.8vw;
+      background-color: #0088a9;
+      color: $white;
+      border: none;
+      border-radius: 3vw;
+      cursor: pointer;
+      font-family: "Montserrat";
+      font-weight: 600;
+      &:hover {background-color: rgba(0, 136, 169, 0.8);}
+    }
+    
+  }
+  
+ 
+

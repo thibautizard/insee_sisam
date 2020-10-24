@@ -1,0 +1,14 @@
+#liste_blocs {
+    width: 100vw;
+    height: 80vh;
+    position: relative;
+    top: 10vh;
+    
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+
+    text-decoration: none;
+}

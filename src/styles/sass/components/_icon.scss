@@ -1,0 +1,105 @@
+/*
+  
+  ##############
+  #   ICONS    #
+  ##############
+  
+  */
+  
+  .icons {
+    margin-top: 1.5vw;
+    display: flex;
+
+    .icon-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width:6vw;      
+
+      &:hover {
+
+          .jointure--inactive {
+            transform: translateY(.45vw);
+            opacity: 1;
+          }
+
+          .icon {
+            transform: translateY(-.2vw);
+          }
+      }
+      .icon-caption {
+
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+
+        &::after {
+          display: block;
+          content: "";
+          position:absolute;
+          top:1.1vw;
+          width:0%;
+          opacity: 0;
+          border-bottom: 2px solid $black;
+          transition-duration: .4s;
+          transition-delay: 0s;
+        }
+      }
+
+      .icon {
+        cursor: pointer; 
+        transition: all .3s ease-in;
+        width: 3vw;
+        height: 3vw;
+        margin: .2vw 1.5vw;
+
+        &--active +.icon-caption {
+          &::after {
+            width:100%;
+            opacity: 1;
+          }
+        }
+      }
+        
+        
+        .icon-caption {
+          font-size: .85vw;
+          font-family: "Montserrat";
+          margin-top: .1vw;
+
+         
+        }
+  
+        .jointure {
+          font-family: "Quicksand", Arial, Helvetica, sans-serif;
+          font-size:.7vw;
+          border-radius: 1.2vw;
+          border: #ac0404 solid .07vw;
+          width:4vw;
+          height: 1.2vw;
+          line-height: 1vw;
+          vertical-align: middle;
+          padding: .1vw 0;
+          transition: all .3s ease-in;
+  
+          color: #ac0404;
+          cursor: pointer;
+          transform: translateY(-.7vw);
+          opacity: 0;
+        }
+  
+        .jointure--active, .jointure--inactive:hover {
+          color: white;
+          background-color: #ac0404;
+          transform: translateY(.45vw);
+          opacity: 1;
+  
+          & + .jointure {
+              transform:translateY(-.3vw);
+              opacity:1;
+          }
+        }
+    }  
+
+    }

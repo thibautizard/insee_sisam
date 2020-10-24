@@ -1,0 +1,88 @@
+.tab-container {
+  display: inline-block;
+  padding-left:3vw;
+}
+
+
+table {
+
+    table-layout: fixed;
+    border-collapse: collapse;
+    box-shadow: 0 0 1vw .2vw rgba(0, 0, 0, 0.10);  
+    margin-right: 50px;
+
+    .table__caption {
+      text-align: left;
+      margin-bottom:10px;
+      font-size: 2rem;
+
+      div {
+        text-align: center;
+        display:inline-block;
+        width: .3vw;
+      }
+
+    }
+    
+    
+
+
+    tr {
+      border-bottom: .08vw solid #dddddd;
+      &:hover {font-weight: 700}
+    }
+    
+    th, td {
+      padding: 5px 10px;
+    }
+    
+    td {
+      font-weight: 400;
+      font-size: 18px;
+      height:45px;
+    
+      input {
+        padding: 3px;
+        font-size: 18px;
+        text-align: center;
+        font-family: 'Quicksand';
+        max-width:300px;
+      }
+    }
+    
+    
+    thead {
+      position: sticky;
+      top:0;
+    
+      tr {
+        color: white;
+        font-weight: bold;
+      }
+      
+      th {
+        font-size: 1.3rem;
+        padding: 10px 17px;
+        font-weight: 700;
+        cursor:pointer;
+        position:relative;
+      }
+    
+    }
+}
+
+
+/*
+#######################
+###    SELECTION     ##
+#######################
+*/
+
+  .selected {
+    background:rgb(247, 247, 247);
+    font-weight: bold;
+    border: .15vw solid black ;
+  }
+
+
+

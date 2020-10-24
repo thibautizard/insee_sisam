@@ -1,0 +1,18 @@
+#footbar {
+    position: absolute;
+    top: 98.5vh;
+    width:100vw;
+    height: 1.5vh;
+    background-color: #24252A;
+    text-align: center;
+    padding: 2px 15px;
+    border-radius: 0 0 10px 10px;
+}
+
+#footbar p {
+    color:white;
+    font-family: "Quicksand", Arial, Helvetica, sans-serif;
+    font-size:1.4vh;
+    display: inline-block;
+    margin: 0 3px;
+}

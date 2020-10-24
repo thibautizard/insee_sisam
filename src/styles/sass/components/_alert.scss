@@ -1,0 +1,45 @@
+#alert-form {
+    position:absolute;
+    z-index: 15;
+    width:30vw;
+    height: 10vw;
+    border-radius: 2vw;
+    background-color: white;
+    z-index:200;
+    top:17vw;
+    left:35vw;
+    box-shadow: 0 0 3vw rgb(106, 106, 106, .5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1vw;
+    padding: 0 2.75vw;
+    visibility: hidden;
+
+    p {
+        margin-bottom: 1.5vw;
+    }
+    
+    .button {
+        background-color:  rgb(2, 156, 194);
+        border-radius: 2vw;
+        color: white;
+        border:none;
+        text-align: center;
+        font-size: 1vw;
+        font-style: "Quicksand";
+        cursor: pointer;
+        transition-duration: 0.4s;
+        height:2.4vw;
+        width:6vw;
+        position: absolute;
+        top:6.75vw;
+        left:12vw;
+
+        transition-duration: .4s;
+
+        &:hover {
+            background-color:  rgb(0, 124, 155);
+        }
+      }
+}
