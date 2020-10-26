@@ -7,6 +7,7 @@ import Search from '../Search/Search'
 import Table from '../Table/Table'
 import AddAgent from '../Form/add_agent'
 import EditAgent from '../Form/edit_agent'
+import CreateTable from '../Form/create_table'
 import Alert from '../Form/Alert'
 import HeaderOrder from './HeaderOrder'
 import Loader from '../Loader/Loader'
@@ -16,7 +17,7 @@ import Loader from '../Loader/Loader'
 IMPORTATION DES FONCTIONS ET DES STYLES
 */
 
-import { getTables, effectTransition, later, scrollCaptionEffect} from '../../fonctions_front'
+import { getTables, effectTransition, later, scrollCaptionEffect, resizeWindows} from '../../fonctions_front'
 
 /*
 ############################
@@ -49,7 +50,7 @@ export default class Tableau extends React.Component {
         icon.classList.toggle("icon--active")
 
         document.querySelectorAll(".jointure").forEach(jointure => jointure.classList.replace("jointure--active", "jointure--inactive"))
-        if(join) e.target.classList.replace("jointure--inactive", "jointure--active")        
+        if(join && e.target) e.target.classList.replace("jointure--inactive", "jointure--active")        
 
         const scrollX = document.getElementById("scrollX")
         effectTransition(scrollX, "fade-out-down")
@@ -61,17 +62,30 @@ export default class Tableau extends React.Component {
         .then(() => effectTransition(scrollX, "fade-in-up"));
 
     }
+
+    refresh = table => {
+        const scrollX = document.getElementById("scrollX")
+        effectTransition(scrollX, "fade-out-down")
+
+        later(1000)
+        .then(() => this.setState({isLoaded:false}))
+        .then(() => getTables(table, false))
+        .then(({tables, data}) => this.setState({ tables, data, isLoaded: true }))
+        .then(() => effectTransition(scrollX, "fade-in-up"));
+    }
  
 
     render() {
 
+        window.addEventListener("resize", () => resizeWindows(1.2, 1.2))
 
         return (
                       
             <div id="content">
 
-                <AddAgent/>
-                <EditAgent/>
+                <AddAgent refresh={this.refresh}/>
+                <EditAgent refresh={this.refresh}/>
+                <CreateTable/>
                 <Alert/>
                 <HeaderOrder/>
                 <div id="grey_cover"></div>

@@ -9,12 +9,12 @@ table {
     table-layout: fixed;
     border-collapse: collapse;
     box-shadow: 0 0 1vw .2vw rgba(0, 0, 0, 0.10);  
-    margin-right: 50px;
+    margin-right: 2vw;
 
     .table__caption {
       text-align: left;
-      margin-bottom:10px;
-      font-size: 2rem;
+      margin-bottom:.6vw;
+      font-size: 1.5vw;
 
       div {
         text-align: center;
@@ -30,23 +30,37 @@ table {
     tr {
       border-bottom: .08vw solid #dddddd;
       &:hover {font-weight: 700}
+
+      &.selected {
+        background:rgb(247, 247, 247);
+        font-weight: bold;
+        border: .15vw solid black ;
+
+        &>td.selected {
+          border:none;
+        }
+      }
     }
     
     th, td {
-      padding: 5px 10px;
+      padding: 0vw .6vw;
     }
     
     td {
       font-weight: 400;
-      font-size: 18px;
-      height:45px;
+      font-size: .9vw;
+      height:2.4vw;
     
       input {
         padding: 3px;
-        font-size: 18px;
+        font-size: .9vw;
         text-align: center;
         font-family: 'Quicksand';
         max-width:300px;
+      }
+      &.selected {
+        background:rgb(247, 247, 247);
+        border-bottom: none;
       }
     }
     
@@ -61,11 +75,39 @@ table {
       }
       
       th {
-        font-size: 1.3rem;
-        padding: 10px 17px;
+        font-size: 1.1vw;
+        padding: .5vw .9vw;
         font-weight: 700;
         cursor:pointer;
         position:relative;
+
+        &.asc {
+          &::before {
+            content:"";
+            position:absolute;
+            top:12%;
+            left:3%;
+            width: 0; 
+            height: 0; 
+            border-left: .25vw solid transparent;
+            border-right: .25vw solid transparent;
+            border-bottom: .45vw solid black;
+          }
+        }
+
+        &.desc {
+          &::before {
+            content:"";
+            position:absolute;
+            top:12%;
+            left:3%;
+            width: 0; 
+            height: 0; 
+            border-left: .25vw solid transparent;
+            border-right: .25vw solid transparent;
+            border-top: .45vw solid black;
+          }
+        }
       }
     
     }
@@ -78,11 +120,7 @@ table {
 #######################
 */
 
-  .selected {
-    background:rgb(247, 247, 247);
-    font-weight: bold;
-    border: .15vw solid black ;
-  }
+  
 
 
 

@@ -1,51 +1,49 @@
 #bloc_direction {
-    width: 500px;
-    height: 500px;
-    border-radius: 70px;
-    margin: 35px 50px;
+
+    width: 20vw;
+    height: 20vw;
+    border-radius: 3vw;
+    margin: 1vw;
     position:relative;
 
-    border: 5px black solid;
+    border: .2vw black solid;
     background-color: #24252A;
     font-family: "Montserrat", sans-serif;
 
     display: flex;
     flex-direction: column;
+    transform: translateY(0);
 
     cursor: pointer; 
-    transition-timing-function: ease-in-out;
-    transition: all 0.2s;
     
+    &:hover {
+        box-shadow: .4vw .4vw 0 .1vw black;
+        transform: translateY(-.2vw);
+
+    }
+
+    &_titre {
+        color: white;
+        font-size: 2vw;
+        margin: .8vw 0;
+    }
+
+    &_informations {
+        
+        font-family: "Quicksand", Arial, Helvetica, sans-serif;
+        padding: .8vw;
+        height: 59%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        color:#24252A;
+        font-size: 1.2vw;
+    }
 
 }
 
-#bloc_direction:hover {
-    box-shadow: 6px 10px 1px #24252A;
-}
-
-
-#bloc_direction_titre {
-    color: white;
-    
-    font-size: 50px;
-    margin: 15px 0;
-}
-
-#bloc_direction_informations {
-    font-family: "Quicksand", Arial, Helvetica, sans-serif;
-    padding: 10px;
-    height: 60%;
-    background-color: white;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-#bloc_direction_informations {
-    color:#24252A;
-    font-size: 27px;
-}
 
 #denombrement, #mobilite {
     display:flex;
@@ -55,9 +53,10 @@
 }
 
 #bloc_direction_directeur {
-    border-bottom: 0.5px solid black;
-    height: 40px;
-    padding: 10px 0;
+    border-bottom: .05vw solid black;
+    height: 1.7vw;
+    line-height: 1.7vw;
+    font-size:.8vw;
     background-color: #D9DDDC;
 }
 
@@ -72,8 +71,8 @@
 
 .minibloc {
     position: relative;
-    width: 200px;
-    height: 80px;
+    width: 45%;
+    height: 4vw;
 }
 
 .minibloc h3, .minibloc p {
@@ -83,12 +82,12 @@
 }
 
 .minibloc img {
-    width: 50%;
+    width: 45%;
     display: inline-block;       
     text-align: center;          
     position: absolute;          
     left: 50%;                  
-    bottom: 10px;                
+    bottom: .6vw;                
     transform: translateX(-50%);
     z-index: 1;
     opacity: 0.15;    

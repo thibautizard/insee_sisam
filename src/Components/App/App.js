@@ -30,11 +30,12 @@ export default class App extends React.Component {
     
   render() {
     
-    window.addEventListener("resize", () => resizeWindows(1.2, 1.2))
+    
 
     document.addEventListener("keypress", e => {
       if(e.key === "Enter") e.preventDefault()
     })
+
 
     
 

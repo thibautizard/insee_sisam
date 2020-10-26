@@ -1,4 +1,4 @@
-import {display, noDisplay, testResults, nmStr, changeAlertMessage} from '../../fonctions_front'
+import {testResults, nmStr, changeAlertMessage, serverPath} from '../../fonctions_front'
 import { testsChange } from './testsChange'
 import { testsSubmit } from './testsSubmit'
 import { fields } from './fields'
@@ -36,7 +36,7 @@ export class Field {
             this.prevValue = this.currentValue;
             this.currentValue = output;
             if(type === "input") input.classList.remove("shaking-error");
-            noDisplay(errorBox);
+            if(errorBox) errorBox.style.display="none";
         } 
         
         else {   
@@ -46,14 +46,14 @@ export class Field {
             input.classList.add("shaking-error")
                      
             errorMessages.forEach(errorMessage => this.errorMessages.push(errorMessage))
-            display(errorBox, "flex"); 
+            if(errorBox) errorBox.style.display="flex"; 
 
         }
 
         
 
         // LANCE UNE REQUÊTE POUR VÉRIFIER SI L'AGENT ET LE BUREAU RENSEIGNÉS EXISTENT DANS LA BASE DE DONNÉES
-        fetch(`http://localhost:2020/get/list`)
+        fetch(`${serverPath}/get/list`)
         .then(response => response.json())
         .then(jsonResponse => {   
 
@@ -78,7 +78,7 @@ export class Field {
         // BUREAU
 
         let listeBureaux = jsonResponse["listeBureaux"].filter(bureau => bureau["idBureau"] !== "/")
-        let bureauxSimpleArray = listeBureaux.map(bureau => bureau["idBureau"].replace(/-\w/,"") + `-${bureau["Position dans la pièce.Bureaux_global"]}`);            
+        let bureauxSimpleArray = listeBureaux.map(bureau => bureau["idBureau"].replace(/-\w/,"") + `-${bureau["Position dans la pièce"]}`);            
         let currentBureau = `${fields["bureau_etage"].currentValue}-${fields["bureau_numero"].currentValue}-${fields["bureau_position"].currentValue}`
 
         // On regarde d'abord si ce bureau existe dans la base
@@ -87,15 +87,15 @@ export class Field {
 
                 // Si le bureau existe, on regarde s'il est occupé
                 bureauxSimpleArray.forEach((bureau, index) => {
-                    if(bureau === currentBureau && listeBureaux[index]["NOM.Bureaux_global"] !== "/") {
-                        let alertMessage = `Le bureau meuble ${listeBureaux[index]["idBureau"]} (position ${listeBureaux[index]["Position dans la pièce.Bureaux_global"]}) est occupé par ${listeBureaux[index]["Prénom.Bureaux_global"]} ${listeBureaux[index]["NOM.Bureaux_global"]} (${listeBureaux[index]["DIR.Bureaux_global"]})`
+                    if(bureau === currentBureau && listeBureaux[index]["NOM"] !== "/") {
+                        let alertMessage = `Le bureau meuble ${listeBureaux[index]["idBureau"]} (position ${listeBureaux[index]["Position dans la pièce"]}) est occupé par ${listeBureaux[index]["Prénom"]} ${listeBureaux[index]["NOM"]} (${listeBureaux[index]["DIR"]})`
                         changeAlertMessage(alertMessage)
                         fields["bureau_aile"].currentValue = listeBureaux[index]["idBureau"].split('-')[1]
                         check = false;
 
-                    } else if(bureau === currentBureau && listeBureaux[index]["NOM.Bureaux_global"] === "/") {
+                    } else if(bureau === currentBureau && listeBureaux[index]["NOM"] === "/") {
                         fields["bureau_aile"].currentValue = listeBureaux[index]["idBureau"].split('-')[1]
-                        let alertMessage = `Le bureau meuble ${listeBureaux[index]["idBureau"]} (position ${listeBureaux[index]["Position dans la pièce.Bureaux_global"]}) est actuellement disponible !`
+                        let alertMessage = `Le bureau meuble ${listeBureaux[index]["idBureau"]} (position ${listeBureaux[index]["Position dans la pièce"]}) est actuellement disponible !`
                         changeAlertMessage(alertMessage)
                     }
                 })

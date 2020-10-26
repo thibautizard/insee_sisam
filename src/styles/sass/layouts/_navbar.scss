@@ -20,6 +20,14 @@ nav {
         font-size: 2vw;
         cursor:pointer;
         font-family: "Montserrat";
+
+        &.demo::after {
+          content:"v1.3 VERSION DEMO";
+          font-size: .6vw;
+          position: absolute;
+          top:45%;
+          left:10%;
+        }
     }
 
     .nav_links {

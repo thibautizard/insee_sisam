@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { serverPath } from '../../fonctions_front';
 
 export default class Detail extends Component {
 
@@ -15,7 +16,7 @@ export default class Detail extends Component {
     componentDidMount() {
         let direction = window.location.href.split("/")[5];
 
-        fetch(`http://localhost:2020/directions/${direction}`)
+        fetch(`${serverPath}/directions/${direction}`)
         .then(response => {
             if(response.ok) {
                 return response.json();
@@ -27,11 +28,18 @@ export default class Detail extends Component {
 
                 let informations = jsonResponse.informations;
                 let bureauxLibres = jsonResponse.bureauxLibres;
-                
+                console.log(informations)
                 return {informations, bureauxLibres, isLoaded: true}
             })    
   
         });
+    }
+
+    redOrGreen = (header) => {
+        let information = this.state.informations[0]
+        if(header === "Trames utilisées") return information[header] > information["Trames"] ? "red" : "green"
+        if(header === "Trames libres") return information[header] < 0 ? "red" : "green"
+        if(header === "Taux d'occupation") return parseInt(information[header]) >= 100 ? "red" : "green"
     }
     
 
@@ -47,11 +55,17 @@ export default class Detail extends Component {
                     <div id="informations">
 
                         <div id="menus" className="colonne">
-                            {Object.keys(this.state.informations[0]).map(header => <p>{`${header}`}</p>)}
+                            {Object.keys(this.state.informations[0]).map(header => 
+                                <p>
+                                    {`${header}`}
+                                </p>)}
                         </div>
 
                         <div id="données" className="colonne">
-                            {Object.keys(this.state.informations[0]).map(header => <p>{`${this.state.informations[0][header]}`}</p>)}
+                            {Object.keys(this.state.informations[0]).map(header => 
+                                <p style={{color:this.redOrGreen(header)}}>
+                                    {`${this.state.informations[0][header]}`}
+                                </p>)}
                         </div>
 
                     </div>
@@ -63,12 +77,12 @@ export default class Detail extends Component {
                     <caption> <div style={{color:"lightgray", backgroundColor:"lightgray"}}>|</div><span className="titleTable"> Liste des bureaux disponibles </span> </caption>
                         <thead>
                             <tr>
-                                {Object.keys(this.state.bureauxLibres[0]).slice(0,4).map(header => <th> {header.split(".")[0]} </th>)}
+                                {Object.keys(this.state.bureauxLibres[0]).slice(0,6).map(header => <th> {header.split(".")[0]} </th>)}
                             </tr>
                         </thead>
 
                         <tbody>
-                            {this.state.bureauxLibres.map(bureau => <tr> {Object.values(bureau).slice(0,4).map(value => <td>{value}</td>)} </tr>)}
+                            {this.state.bureauxLibres.map(bureau => <tr> {Object.values(bureau).slice(0,6).map(value => <td>{value}</td>)} </tr>)}
                         </tbody>                   
                     </table>    
                 </div> 

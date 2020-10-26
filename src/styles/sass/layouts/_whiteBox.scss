@@ -1,7 +1,7 @@
 .whiteBox {
 
     font-family: "Quicksand";
-    padding-top: 30px;
+    padding-top: 1.4vw;
     position:absolute;
     
     
@@ -37,6 +37,14 @@
     left:20vw;
     width:60vw;
     max-height: 95vh;
+  }
+
+  #create_table {
+    height:75vh;
+    top:13vh;
+    left:15vw;
+    width:70vw;
+    overflow-y: scroll;
   }
 
 
@@ -331,10 +339,52 @@ width:100px;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: center;
-    overflow:scroll;
-    margin: 25px 0px;
-    height: 61vh;
+    margin: 1vw 0px;
+    height: 35vw;
     width:76vw;
+    }
+
+    #create_table .part-form {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      margin: 2.5vw 0;
+
+      h2 {
+        margin:0;
+        margin-bottom:1vw;
+        width:100%;
+      }
+
+      .table-bloc {
+        width: 11vw;
+        background-color: rgb(245, 245, 245);
+        padding: 1vw 0vw;
+        border-radius: 1vw;
+        position: relative;
+
+        p {
+          font-size: 1.2vw;
+          margin-bottom: .5vw;
+        }
+
+        button {
+          font-size: .7vw;
+        }
+
+        input[type=checkbox] {
+          border: 3px solid red;
+          position: absolute;
+          top:.6vw;
+          right:.6vw;
+          transform: scale(1.4);
+
+        }
+
+        .modification-date {
+          font-size: .5vw;
+        }
+      }
     }
 
 
@@ -424,21 +474,21 @@ width:100px;
     font-style: "Quicksand";
     transition-duration: 0.4s;
     opacity:0.5;
-    height:6vh;
+    height:3.4vw;
   }
 
   .whiteBox .button-active {
     background-color:  rgb(2, 156, 194);
-    border-radius: 50px;
+    border-radius: 2vw;
     color: white;
     border:none;
-    padding: 15px 50px;
+    padding: .7vw 2.5vw;
     text-align: center;
-    font-size: 35px;
+    font-size: 1.6vw;
     font-style: "Quicksand";
-    cursor: pointer;
     transition-duration: 0.4s;
-    min-height: 60px;
+    height:3.4vw;
+    cursor: pointer;
   }
 
   .whiteBox .button .hoverable:hover {

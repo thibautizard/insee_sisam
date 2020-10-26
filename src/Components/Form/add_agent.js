@@ -19,18 +19,19 @@ export default class add_agent extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         let activeButton = document.querySelector("#add_agent input[type='submit']").classList.contains("button-active")
-        if(activeButton) postRequest("/ajouter/agent", Field.checkSubmit(), fields)
+        if(activeButton) postRequest("/add/agent", Field.checkSubmit(), fields)
         else changeAlertMessage("Ce formulaire est trop incomplet pour être envoyé !")
     }
 
     render() {
+
         
         return (
 
             <div id="add_agent" className="whiteBox">
                 
                 {/* CROIX FERMETURE */}
-                <div id="cross" onClick={e => crossClose(e, fields)}>✕</div>
+                <div id="cross" onClick={e => {this.props.refresh("Agents_effectifs"); crossClose(e, fields)}}>✕</div>
 
                 {/* FORMULAIRE */}
                 <form id="formulaire_add" onSubmit={this.handleSubmit}>

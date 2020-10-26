@@ -1,11 +1,9 @@
 #cartouche {
-    width: 85%;
-    height:83vh;
-    margin-top: 200px;
-    margin-bottom: 130px;
+    width: 95%;
+    height:88vh;
+    margin-top: 12vh;
     display:flex;
     justify-content: space-between;
-    padding:0;
 }
 
 
@@ -23,10 +21,9 @@
 }
 
 #liste_informations h3 {
-    margin-top: 10px;
-    margin-bottom:50px;
+    margin-bottom: 2vw;
     text-align: center;
-    font-size: 6rem;
+    font-size: 5vw;
     font-family: "Quicksand", Arial, Helvetica, sans-serif;
 }
 
@@ -45,7 +42,7 @@
 
 #menus {
     font-weight: bold;
-    margin-right: 100px;
+    margin-right: 4vw;
 }
 
 #données {
@@ -54,7 +51,7 @@
 
 .colonne {
     text-align: left;
-    font-size: 40px;
+    font-size: 1.8vw;
     font-family:  "Quicksand", Arial, Helvetica, sans-serif;
 }
 /*

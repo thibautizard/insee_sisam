@@ -5,7 +5,6 @@ import{ BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import './styles/css/style.css';
 
-let serverPath = "http://localhost:2020";
 
 ReactDOM.render(
   <Router>

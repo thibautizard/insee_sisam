@@ -1,5 +1,5 @@
 import React from 'react'
-import {selectOrDeselectRows, changeRowsColor, filterHeaders, deselectAllRowsWhenClickingDocument } from '../../fonctions_front'
+import {selectOrDeselectRows, changeRowsColor, filterHeaders, deselectAllRowsWhenClickingDocument, hoverColumn, hoverColumnOut } from '../../fonctions_front'
 
 export default function Table(props) {
 
@@ -26,7 +26,9 @@ export default function Table(props) {
                 {subheaders.map((header, i) => <th 
                                                 key={i} 
                                                 id={`${name}_${header}`}
-                                                onClick={e => filterHeaders(e, headers, header)}> 
+                                                onClick={e => filterHeaders(e, headers, header, i)}
+                                                onMouseOver={e => hoverColumn(e)}
+                                                onMouseOut={e => hoverColumnOut(e)}> 
                                                 {header} 
                                                 </th>)}
                 </tr>

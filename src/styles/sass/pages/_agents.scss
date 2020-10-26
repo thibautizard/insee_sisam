@@ -48,33 +48,39 @@
       top:0;
       left:0;
       border: 1px solid black;
-      border-radius: 20px;
+      border-radius: 1vw;
       box-shadow: 0 0 5px .5px rgb(150, 150, 150);
-      
-      display: none;
-      padding: 20px 0;
-    }
+      visibility: hidden;
+      padding: .7vw 0;
 
-    .header-order ul {
-      list-style-type: none;
-      text-align: left;
-      font-family: "Quicksand";
-      font-size: 18px;   
-      max-height: 400px;
-      overflow: scroll;   
-    } 
-
-    .header-order ul li {
-      padding:3px 25px;
-      width:100%;
-    }
-
-    .header-order ul li:hover {
-      background: rgb(240, 240, 240);
-      cursor: pointer;
-    }
+      ul {
+        list-style-type: none;
+        text-align: left;
+        font-family: "Quicksand";
+        font-size: 1vw;   
+        max-height: 30vh;
+        overflow: scroll;  
   
-  /* ==========================
+        li {
+          padding:3px 1.2vw;
+          width:100%;
+
+          &:first-child {
+            font-weight: bold;
+          }
+  
+          &:hover {
+            background: rgb(240, 240, 240);
+            cursor: pointer;
+          }
+        }
+      } 
+    }
+
+
+    
+    
+    /* ==========================
            BOTTOM - FADE OUT
      ========================== */
   

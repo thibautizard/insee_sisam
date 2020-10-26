@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Bloc from './Bloc'; 
+import Loader from '../Loader/Loader';
+import { serverPath } from "../../fonctions_front";
 
 export default class Directions extends Component {
 
@@ -14,21 +16,13 @@ export default class Directions extends Component {
 
     componentDidMount() {
 
-        fetch(`http://localhost:2020/directions`)
+        fetch(`${serverPath}/directions`)
         .then(response => {
             if(response.ok) {
                 return response.json();
             } throw new Error ('Échec de la requête')
         }, networkError => console.log(networkError.message))
-        .then(jsonResponse => {
-            this.setState(
-                {
-                    rows: jsonResponse,
-                    isLoaded: true
-                }
-            ) 
-            
-        });
+        .then(jsonResponse => this.setState({rows: jsonResponse, isLoaded: true}));
     }
 
     render() {
@@ -41,7 +35,7 @@ export default class Directions extends Component {
                     : null)}
                 </div>
             
-            :<div className="loadingspinner"></div>
+            :<Loader/>
         )
     }
 }

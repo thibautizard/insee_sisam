@@ -12,13 +12,12 @@ export default function Navbar() {
 
         return (
             <nav>
-                <a href="/"> <p className="link-home"> SISAM </p> </a>
+                <a href="/"> <p className="link-home demo"> SISAM </p> </a>
                 <div className="nav_links">
                     <a href="/agents" className={navClass("agents")}> Agents </a>
                     <a href="/bureaux" className={navClass("bureaux")}> Bureaux </a>
                     <a href="/directions" className={navClass("directions")}> Directions </a>
-                    <a href="/mobilites" className={navClass("mobilites")}> Mobilites </a>
-                    <a href="/tables" className={navClass("tables")}> Tables </a>
+                    <a href="/mobilites" className={navClass("mobilites")}> <span style={{marginRight:".7vw"}}>🔧</span> Mobilites </a>
                 </div>
                 <a href="mailto:thibaut.izard@insee.fr?subject=Version démo de SISAM"><button> Contact </button></a>
             </nav>

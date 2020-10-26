@@ -29,8 +29,8 @@ Fonctions pour reformater des chaînes de caractères
 
 import React from 'react'
 
-export const serverPath = "https://limitless-sea-21607.herokuapp.com"
-
+// export const serverPath = "https://limitless-sea-21607.herokuapp.com"
+export const serverPath = "http://localhost:2020"
 
 /*
 
@@ -97,7 +97,7 @@ export function tablesAndLabels (famille) {
                    
         etiquettes = [{name: "Ajouter un agent", action: "add_agent"}, 
                       {name: "Modifier un agent", action: "edit_agent"}, 
-                      {name: "Générer une table", action: "create_table"}];
+                      {name: "Gérer les tables", action: "create_table"}];
         break;
 
         case 'Bureaux': 
@@ -108,7 +108,7 @@ export function tablesAndLabels (famille) {
                    
         etiquettes = [{name: "Ajouter un agent", action: "add_agent"}, 
                       {name: "Modifier un agent", action: "edit_agent"}, 
-                      {name: "Générer une table", action: "create_table"}];
+                      {name: "Gérer les tables", action: "create_table"}];
         break; 
 
         default: 
@@ -123,8 +123,8 @@ export function handleSearchBar(e) {
     let rows = document.querySelectorAll("tbody tr")
     for(let row of rows) {
         const [idAgent, idBureau] = row.classList
-        if(search.every(term => idAgent.includes(nmStr(term)) || idBureau.includes(term.toUpperCase())) || !search) display(row)
-        else noDisplay(row)
+        if(search.every(term => idAgent.includes(nmStr(term)) || idBureau.includes(term.toUpperCase())) || !search) display(row, true)
+        else noDisplay(row, true)
     } 
 }
 
@@ -133,7 +133,6 @@ export function handleClickLabel(action) {
     const greyCover = document.getElementById("grey_cover")
     console.log(greyCover)
     greyCover.style.visibility = "visible"
-
     const whiteBox = document.getElementById(action)
     whiteBox.style.visibility = "visible"
 
@@ -172,7 +171,7 @@ export function decideSubTables(table, join=false) {
         blue : "#0088a9",
     }
 
-    if(join===false) {
+    if(!join) {
         switch(table) {
 
             // Tables Agents
@@ -182,10 +181,9 @@ export function decideSubTables(table, join=false) {
                     {name:"Unités", subheaders:subHeaders["Unités"], color:colors.blue}]
                     
             case "Agents_bureaux" :
-            return [{
-                        name: "Bureaux",
-                        subheaders:[ "NOM", "Prénom", "Etage", "Numéro Pièce arbitré", "Position dans la pièce", "Timbre", "DIR", "Matricule", "Rang hiérarchique", "Droits à trame(s) par personne"],
-                        color: colors.green}]
+            return [{name: "Bureaux",
+                    subheaders:[ "NOM", "Prénom", "Etage", "Numéro Pièce arbitré", "Position dans la pièce", "Timbre", "DIR", "Matricule", "Rang hiérarchique", "Droits à trame(s) par personne"],
+                    color: colors.green}]
     
             case "Agents_postes" :
             return [{ name: "Matériel", subheaders:subHeaders["Matériel"], color: colors.red}]
@@ -297,43 +295,83 @@ export function handleSearchBar2(e) {
     
 }
 
-export function filterHeaders (e, headers, header) {
-    const headerOrder = document.querySelector(".header-order")
-    const liste = headerOrder.querySelector("ul")
+export function filterHeaders (e, headers, header, index) {
 
-    liste.innerHTML = ""
     if(headers[header].length) {
-        display(headerOrder, "bloc")
-        effectTransition(headerOrder, "fade-left-in-quick",  "flex")
-    }
-    else noDisplay(headerOrder, true)
+
+        const headerOrder = document.querySelector(".header-order")
+        const liste = headerOrder.querySelector("ul")
+
+        liste.innerHTML = ""
+        
+        if(headers[header].length) {
+            headerOrder.style.visibility = "visible"
+            effectTransition(headerOrder, "fade-left-in-quick",  "flex")
+        } else headerOrder.style.visibility = "hidden"
+        
+        const createModality = content => {
+            let modality = document.createElement("li")
+            modality.textContent = content
+            liste.appendChild(modality)
+        }
+
+        createModality("TOUT AFFICHER")
+        headers[header].sort().forEach(createModality)
+
+        
     
-   
-    headers[header].sort().forEach(modalityToAdd => {
-        let modality = document.createElement("li")
-        modality.textContent = modalityToAdd
-        liste.appendChild(modality)
-        modality.addEventListener("click", (e) => {
+        Array.from(liste.children).forEach(modality => {   
+            modality.addEventListener("click", e => {
 
-            let rows = document.querySelectorAll("tbody tr")
+                let rows = Array.from(document.querySelectorAll("tbody tr"))
 
-            for(let row of rows) {
-                let filter= row.querySelector(`td[header=${header}]`) ? row.querySelector(`td[header=${header}]`).textContent : ""
-                if(filter === e.target.textContent) document.querySelectorAll(`tbody tr[data-key="${row.dataset.key}"]`).forEach(row2 => {console.log(row2); display(row2, true)})
-                else noDisplay(row, true)
-            } 
+                for(let row of rows) {
+                    let filter= row.querySelector(`td[header="${header}"]`) ? row.querySelector(`td[header="${header}"]`).textContent : ""
+                    if(filter === e.target.textContent) Array.from(document.querySelectorAll(`tr[data-key="${row.dataset.key}"]`)).forEach(row2 => {console.log(row2); row2.style.display = ""})
+                    else if(e.target.textContent === "TOUT AFFICHER") row.style.display = ""
+                    else row.style.display = "none"
+                }    
+            })
+        })
 
-            alert(`click sur ${e.target.textContent} de ${header}`)
-   
-    })
-    })
+        headerOrder.style.top = `${e.clientY - (headerOrder.offsetHeight / 2)}px`
+        headerOrder.style.left = `${e.clientX + 20}px`
 
-    headerOrder.style.top = `${e.clientY - (headerOrder.offsetHeight / 2)}px`
-    headerOrder.style.left = `${e.clientX + 20}px`
+    } else {
+        const header = e.target
+        const tables = Array.from(document.querySelectorAll("table tbody"));
+        const rows = Array.from(e.target.parentNode.parentNode.parentNode.querySelectorAll("tbody tr"));
+
+        const getVal = (row, index) => row.children[index].textContent || row.children[index].textContent;    
+        header.classList.contains("asc") ? header.setAttribute("class", "desc") : header.setAttribute("class", "asc");
+
+        let asc = header.classList.contains("asc") ? true : false
+        
+        rows.sort((a,b) => getVal(asc ? a : b, index).toString().localeCompare(getVal(asc ? b : a, index)))
+        .forEach(row => {
+            tables.forEach(table => {
+                let rowChecked = table.querySelector(`tr[data-key="${row.dataset.key}"]`)
+                table.appendChild(rowChecked)
+            })
+            })    
+    }
+    
 }
 
 export function clickFilter(e) {
 
+}
+
+export function hoverColumn(e) {
+    let header = e.target.textContent 
+    let cells = Array.from(document.querySelectorAll(`tbody td[header="${header}"]`))
+    cells.forEach(cell => cell.classList.add("selected"))
+}
+
+export function hoverColumnOut(e) {
+    let header = e.target.textContent 
+    let cells = Array.from(document.querySelectorAll(`tbody td[header="${header}"]`))
+    cells.forEach(cell => cell.classList.remove("selected"))
 }
 
 /*
@@ -403,7 +441,7 @@ export function postRequest(url, body, fields) {
         } throw new Error("La requête d'ajout a échoué")
     })
     .then(textResponse => {
-        alert(textResponse)
+        changeAlertMessage(textResponse)
     })
 }
 
@@ -514,7 +552,7 @@ export function resizeWindows () {
 
 export function crossClose(e, fields) {
 
-    clearInputs(e.target.parentNode.id, fields)
+    if(fields) clearInputs(e.target.parentNode.id, fields)
     const cover = document.getElementById("grey_cover");
     document.querySelector("#add_agent input[type='submit']").classList.replace("button-active", "button")
     effectTransition(e.target.parentNode, 'fade-right-out');
@@ -614,14 +652,14 @@ export function mouseOverError(e) {
     let target = e.currentTarget;
     let errorMessage = target.getElementsByClassName("form_errormessage")[0]
 
-        if(errorMessage.style.display !== "flex") display(errorMessage,"flex");
+        if(errorMessage.style.display !== "flex") errorMessage.style.display = "flex";
 
         target.addEventListener("mousemove", (e2) => {
             errorMessage.style.left = `${e2.offsetX - 22}px`
             errorMessage.style.top  = `${e2.offsetY + 18}px`
         })
         
-        target.addEventListener("mouseout", () => noDisplay(errorMessage));
+        target.addEventListener("mouseout", () => errorMessage.style.display = "");
 }
 
                                                                                                 /*
@@ -740,8 +778,10 @@ export function checkList() {
 export function clearInputs(form, fields) {
     document.querySelector(`#${form} input[type='submit']`).classList.replace("button-active", "button");
     form = document.getElementById(form);
-    let allInputs = Array.from(form.querySelectorAll("input[type=text], input[type=radio], select, textarea"))
+    let allInputs = Array.from(form.querySelectorAll("input[type=text], select, textarea"))
+    let radios = Array.from(form.querySelectorAll("input[type=radio]"))
     allInputs.forEach(input => input.value="");
+    radios.forEach(radio => radio.removeAttribute("checked"))
     Object.keys(fields).forEach(key => { 
         fields[key].currentValue = ""
         fields[key].prevValue = "" })
@@ -801,7 +841,7 @@ export function scrollCaptionEffect(e) {
         }; 
     }
     const headerOrder = document.querySelector(".header-order")
-    if(headerOrder.style.display) noDisplay(headerOrder)
+    if(headerOrder.style.display) headerOrder.style.visibility = "hidden"
 }
 
 // Greyscreen
